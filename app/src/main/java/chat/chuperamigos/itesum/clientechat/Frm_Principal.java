@@ -184,7 +184,7 @@ public class Frm_Principal extends ActionBarActivity implements AsyncResponse {
                     System.out.println("Error al leer del stream de entrada: " + ex.getMessage());
                     conectado = false;
                 } catch (NullPointerException ex) {
-                    System.out.println("El socket no se creo correctamente. ");
+                    System.out.println("El socket no se creo correctamente.");
                     conectado = false;
                 }
             }
