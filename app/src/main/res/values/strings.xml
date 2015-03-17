@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Socket ITESUM CHAT</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="lblip_server">IP del Servidor</string>
+    <string name="lblPuerto">Puerto</string>
+    <string name="btnConectar_clnt">Conectar</string>
+</resources>
