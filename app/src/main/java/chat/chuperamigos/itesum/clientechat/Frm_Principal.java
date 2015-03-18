@@ -1,5 +1,6 @@
 package chat.chuperamigos.itesum.clientechat;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -42,7 +43,10 @@ public class Frm_Principal extends ActionBarActivity implements AsyncResponse {
         // as you specify a parent activity in AndroidManifest.xml.
         switch (item.getItemId()) {
             case R.id.action_settings:
-                Toast.makeText(getApplicationContext(),"Opciones",Toast.LENGTH_LONG).show();
+                /*Toast.makeText(getApplicationContext(),"Opciones",Toast.LENGTH_LONG).show();*/
+                MenuOpciones();
+
+
                 return true;
             case R.id.submenu_conectar:
                 Toast.makeText(getApplicationContext(),"Conectando",Toast.LENGTH_LONG).show();
@@ -103,6 +107,14 @@ public class Frm_Principal extends ActionBarActivity implements AsyncResponse {
         catch (Exception ex){
             System.out.println("Paso esto: " + ex.getMessage());
         }
+    }
+
+    /*Manda a Llamar la Actividad del Menú de Opciones*/
+    public void MenuOpciones() {
+        Intent Menu_opciones = new Intent(this, frm_Opciones.class);
+        startActivity(Menu_opciones);
+
+
     }
 
     private class ConectarHilos extends AsyncTask<String,Void,Boolean>{
