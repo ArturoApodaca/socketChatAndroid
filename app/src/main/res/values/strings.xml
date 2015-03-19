@@ -6,4 +6,5 @@
     <string name="lblip_server">IP del Servidor</string>
     <string name="lblPuerto">Puerto</string>
     <string name="btnConectar_clnt">Conectar</string>
+    <string name="title_activity_frm__opciones">frm_Opciones</string>
 </resources>
