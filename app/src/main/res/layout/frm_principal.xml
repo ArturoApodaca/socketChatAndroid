@@ -20,7 +20,8 @@
         android:layout_height="wrap_content"
         android:inputType="number"
         android:digits="0123456789."
-        android:id="@+id/txtIP"/>
+        android:id="@+id/txtIP"
+        android:text="cristobalhdez.ddns.net" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
