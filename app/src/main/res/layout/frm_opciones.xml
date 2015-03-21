@@ -14,7 +14,10 @@
         android:text="Usuario"
         android:id="@+id/tvUsuario"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:textColor="#FF8400"
+        android:textStyle="bold"
+        android:textSize="18sp" />
 
     <Button
         android:layout_width="wrap_content"
@@ -23,7 +26,10 @@
         android:id="@+id/btnGuardar"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:onClick="onGuardar" />
+        android:onClick="onGuardar"
+        android:textColor="#FF8400"
+        android:textStyle="bold"
+        android:textSize="18sp" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -40,7 +46,10 @@
         android:id="@+id/tvServidor"
         android:layout_below="@+id/edUsuario"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="44dp" />
+        android:layout_marginTop="44dp"
+        android:textStyle="bold"
+        android:textColor="#FF8400"
+        android:textSize="18sp" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -57,7 +66,10 @@
         android:id="@+id/tvPuerto"
         android:layout_below="@+id/edServidor"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="42dp" />
+        android:layout_marginTop="42dp"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="#FF8400" />
 
     <EditText
         android:layout_width="wrap_content"

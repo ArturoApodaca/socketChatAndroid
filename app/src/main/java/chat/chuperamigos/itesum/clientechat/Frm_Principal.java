@@ -1,6 +1,7 @@
 package chat.chuperamigos.itesum.clientechat;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.database.sqlite.SQLiteDatabase;
 
 import java.io.DataInputStream;
 import java.io.IOException;
@@ -18,10 +20,14 @@ import java.net.Socket;
 public class Frm_Principal extends ActionBarActivity implements AsyncResponse {
     EditText txtIp;
     EditText txtPuerto;
+    EditText txtUsuario;
     EditText status;
     EditText txtMensaje;
     Button btnEnviar;
     Socket socket = null;
+    String Usuario = "";
+    String Servidor = "";
+    String Puerto = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,12 +50,68 @@ public class Frm_Principal extends ActionBarActivity implements AsyncResponse {
         switch (item.getItemId()) {
             case R.id.action_settings:
                 /*Toast.makeText(getApplicationContext(),"Opciones",Toast.LENGTH_LONG).show();*/
+                /*Método que manda a llamar la Activity de Opciones*/
                 MenuOpciones();
 
 
                 return true;
             case R.id.submenu_conectar:
-                Toast.makeText(getApplicationContext(),"Conectando",Toast.LENGTH_LONG).show();
+                /*Conectar al Chat*/
+
+
+
+                try {
+                    Toast.makeText(getApplicationContext(), "Conectando", Toast.LENGTH_LONG).show();
+
+                    String nombreBD = "CONEXION";
+                    int NoVersion = 1;
+
+                    helper helperBD = new helper(this, nombreBD, null, NoVersion);
+                    SQLiteDatabase bd = helperBD.getWritableDatabase();
+
+                    //String sSQL = "SELECT * FROM PARAMETROS";
+
+                    Cursor c = bd.rawQuery("SELECT * FROM PARAMETROS", null);
+
+
+
+                    try {
+                        if (c.moveToFirst() == true) {
+                            do {
+                                Usuario = c.getString(0);
+                                Servidor = c.getString(1);
+                                Puerto = c.getString(2);
+
+                            } while (c.moveToNext());
+
+                            Toast.makeText(this,"Usuario: " + Usuario + ' ' + "Servidor: " + Servidor + "Puerto: " + Puerto, Toast.LENGTH_LONG).show();
+
+
+
+                        }
+                    } catch (Exception ex) {
+                        Toast.makeText(this, "No se pudo leer la base de datos", Toast.LENGTH_LONG).show();
+                    }
+
+                    int PuertoInt = Integer.parseInt(Puerto.toString());
+
+
+                    conectarSocket(Servidor,PuertoInt);
+
+                    Toast.makeText(this, "Conexión Exitosa", Toast.LENGTH_LONG).show();
+
+
+
+                    /*getConexion();*/
+
+                } catch (Exception ex) {
+                    Toast.makeText(this, "No se pudo conectar con el Servidor.", Toast.LENGTH_LONG).show();
+                }
+
+
+
+
+
                 return true;
             case R.id.submenu_desconectar:
                 if(socket.isConnected()){
@@ -62,7 +124,8 @@ public class Frm_Principal extends ActionBarActivity implements AsyncResponse {
                 return super.onOptionsItemSelected(item);
         }
     }
-    public void getConexion(View v){
+
+    public void getConexion() {
         txtIp = (EditText)findViewById(R.id.txtIP);
         txtPuerto = (EditText)findViewById(R.id.txtPuerto);
         String ip = txtIp.getText().toString();
@@ -154,7 +217,7 @@ public class Frm_Principal extends ActionBarActivity implements AsyncResponse {
     public void onEnviaMensaje(View v){
         txtMensaje = (EditText)findViewById(R.id.txtMensaje);
         String msj = txtMensaje.getText().toString();
-        EnviaMensajes mensaje = new EnviaMensajes(socket,msj,"Cristobal");
+        EnviaMensajes mensaje = new EnviaMensajes(socket,msj,Usuario);
         txtMensaje.setText("");
     }
     private void desconectar(Socket soquete){
