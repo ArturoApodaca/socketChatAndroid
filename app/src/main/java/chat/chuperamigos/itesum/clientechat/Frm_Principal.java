@@ -25,6 +25,9 @@ public class Frm_Principal extends ActionBarActivity implements AsyncResponse {
     EditText txtMensaje;
     Button btnEnviar;
     Socket socket = null;
+    String Usuario = "";
+    String Servidor = "";
+    String Puerto = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +58,8 @@ public class Frm_Principal extends ActionBarActivity implements AsyncResponse {
             case R.id.submenu_conectar:
                 /*Conectar al Chat*/
 
+
+
                 try {
                     Toast.makeText(getApplicationContext(), "Conectando", Toast.LENGTH_LONG).show();
 
@@ -68,9 +73,7 @@ public class Frm_Principal extends ActionBarActivity implements AsyncResponse {
 
                     Cursor c = bd.rawQuery("SELECT * FROM PARAMETROS", null);
 
-                    String Usuario;
-                    String Servidor;
-                    String Puerto;
+
 
                     try {
                         if (c.moveToFirst() == true) {
@@ -80,15 +83,20 @@ public class Frm_Principal extends ActionBarActivity implements AsyncResponse {
                                 Puerto = c.getString(2);
 
                             } while (c.moveToNext());
+
+                            Toast.makeText(this,"Usuario: " + Usuario + ' ' + "Servidor: " + Servidor + "Puerto: " + Puerto, Toast.LENGTH_LONG).show();
+
+
+
                         }
                     } catch (Exception ex) {
                         Toast.makeText(this, "No se pudo leer la base de datos", Toast.LENGTH_LONG).show();
                     }
 
-                    //int PuertoInt = Integer.parseInt(Puerto.toString());
+                    int PuertoInt = Integer.parseInt(Puerto.toString());
 
 
-                    // conectarSocket(Servidor,Puerto);
+                    conectarSocket(Servidor,PuertoInt);
 
                     Toast.makeText(this, "Conexión Exitosa", Toast.LENGTH_LONG).show();
 
@@ -209,7 +217,7 @@ public class Frm_Principal extends ActionBarActivity implements AsyncResponse {
     public void onEnviaMensaje(View v){
         txtMensaje = (EditText)findViewById(R.id.txtMensaje);
         String msj = txtMensaje.getText().toString();
-        EnviaMensajes mensaje = new EnviaMensajes(socket,msj,"Cristobal");
+        EnviaMensajes mensaje = new EnviaMensajes(socket,msj,Usuario);
         txtMensaje.setText("");
     }
     private void desconectar(Socket soquete){
