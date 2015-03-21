@@ -6,42 +6,7 @@
     android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".Frm_Principal"
     android:orientation="vertical"
     android:weightSum="1">
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/lblip_server"
-        android:paddingTop="16dp"
-        android:id="@+id/lblIp"
-        android:textStyle="bold"
-        android:textSize="18sp"
-        android:textColor="#FF8400"/>
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="number"
-        android:digits="0123456789."
-        android:id="@+id/txtIP"
-        android:text="cristobalhdez.ddns.net" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/lblPuerto"
-        android:paddingTop="16dp"
-        android:textStyle="bold"
-        android:textSize="18sp"
-        android:textColor="#FF8400"/>
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="number"
-        android:digits="0123456789"
-        android:id="@+id/txtPuerto"/>
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/btnConectar_clnt"
-        android:layout_marginTop="8dp"
-        android:onClick="getConexion" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -51,7 +16,8 @@
             android:hint="Estado de la conexion"
             android:textAlignment="center"
             android:id="@+id/txtStatus"
-            android:layout_marginTop="8dp"/>
+            android:layout_marginTop="8dp"
+            android:gravity="center_vertical|center_horizontal" />
     </LinearLayout>
 
     <EditText
@@ -60,19 +26,19 @@
         android:inputType="textMultiLine"
         android:ems="10"
         android:id="@+id/txtChat"
-        android:layout_weight="0.66"
+        android:layout_weight="0.95"
         android:background="#C2B7AC"
         android:editable="false"
-        android:enabled="true"
+        android:enabled="false"
         android:padding="4dp"
         android:shadowColor="#7A7A8C"
         android:height="20dp"
         android:hint="Historial de mensajes"
         android:singleLine="false"
-        android:textAlignment="center"
         android:textColor="#ffff701c"
         android:textColorHint="#fffffdfb"
-        android:layout_gravity="center|top" />
+        android:gravity="center_vertical|center_horizontal|bottom|left"
+        android:textAlignment="viewStart" />
 
     <LinearLayout
         android:orientation="horizontal"

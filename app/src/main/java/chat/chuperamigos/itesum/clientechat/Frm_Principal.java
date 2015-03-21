@@ -52,16 +52,12 @@ public class Frm_Principal extends ActionBarActivity implements AsyncResponse {
                 /*Toast.makeText(getApplicationContext(),"Opciones",Toast.LENGTH_LONG).show();*/
                 /*Método que manda a llamar la Activity de Opciones*/
                 MenuOpciones();
-
-
                 return true;
             case R.id.submenu_conectar:
                 /*Conectar al Chat*/
 
-
-
                 try {
-                    Toast.makeText(getApplicationContext(), "Conectando", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Conectando", Toast.LENGTH_SHORT).show();
 
                     String nombreBD = "CONEXION";
                     int NoVersion = 1;
@@ -72,46 +68,26 @@ public class Frm_Principal extends ActionBarActivity implements AsyncResponse {
                     //String sSQL = "SELECT * FROM PARAMETROS";
 
                     Cursor c = bd.rawQuery("SELECT * FROM PARAMETROS", null);
-
-
-
                     try {
                         if (c.moveToFirst() == true) {
                             do {
                                 Usuario = c.getString(0);
                                 Servidor = c.getString(1);
                                 Puerto = c.getString(2);
-
                             } while (c.moveToNext());
-
-                            Toast.makeText(this,"Usuario: " + Usuario + ' ' + "Servidor: " + Servidor + "Puerto: " + Puerto, Toast.LENGTH_LONG).show();
-
-
-
                         }
-                    } catch (Exception ex) {
+                    }
+                    catch (Exception ex) {
                         Toast.makeText(this, "No se pudo leer la base de datos", Toast.LENGTH_LONG).show();
                     }
-
+                    //Ejecutamos el metodo ConectarSocket con sus parametros necesarios
                     int PuertoInt = Integer.parseInt(Puerto.toString());
-
-
                     conectarSocket(Servidor,PuertoInt);
-
                     Toast.makeText(this, "Conexión Exitosa", Toast.LENGTH_LONG).show();
-
-
-
-                    /*getConexion();*/
 
                 } catch (Exception ex) {
                     Toast.makeText(this, "No se pudo conectar con el Servidor.", Toast.LENGTH_LONG).show();
                 }
-
-
-
-
-
                 return true;
             case R.id.submenu_desconectar:
                 if(socket.isConnected()){
@@ -125,14 +101,6 @@ public class Frm_Principal extends ActionBarActivity implements AsyncResponse {
         }
     }
 
-    public void getConexion() {
-        txtIp = (EditText)findViewById(R.id.txtIP);
-        txtPuerto = (EditText)findViewById(R.id.txtPuerto);
-        String ip = txtIp.getText().toString();
-        int puerto = Integer.parseInt(txtPuerto.getText().toString());
-        conectarSocket(ip,puerto);
-
-    }
     private boolean conectarSocket(String ip, int puerto){
         ConectarHilos hilo = new ConectarHilos();
         hilo.execute(ip,Integer.toString(puerto));

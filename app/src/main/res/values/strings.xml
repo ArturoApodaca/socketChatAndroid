@@ -2,9 +2,9 @@
     <string name="app_name">Socket ITESUM CHAT</string>
 
     <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">Configuracion</string>
     <string name="lblip_server">IP del Servidor</string>
     <string name="lblPuerto">Puerto</string>
     <string name="btnConectar_clnt">Conectar</string>
-    <string name="title_activity_frm__opciones">frm_Opciones</string>
+    <string name="title_activity_frm__opciones">Configuraciones</string>
 </resources>
